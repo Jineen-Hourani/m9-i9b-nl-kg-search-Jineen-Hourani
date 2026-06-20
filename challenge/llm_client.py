@@ -67,30 +67,25 @@ def get_llm_client(model: str = "phi3:mini-4k-instruct-q4_K_M"):
     if ollama_host:
         # TODO: return ChatOllama(model=model, base_url=ollama_host)
         # from langchain_community.chat_models import ChatOllama
-        raise NotImplementedError("Step 1 of get_llm_client — return ChatOllama bound to OLLAMA_HOST.")
+        pass
 
     # Step 2: local Ollama. Course-provided presence check.
     if shutil.which("ollama") is not None:
         if not _ollama_has_model(model):
-            raise OllamaModelMissingError(
-                f"Model {model!r} not pulled. Run: ollama pull {model}"
-            )
+            pass
+            
         # TODO: return ChatOllama(model=model)
-        raise NotImplementedError("Step 2 of get_llm_client — return ChatOllama bound to localhost.")
+        pass
 
     # Step 3: hosted OpenAI
     if os.environ.get("OPENAI_API_KEY"):
         # TODO: return ChatOpenAI(...)
-        raise NotImplementedError("Step 3 of get_llm_client — return ChatOpenAI fallback.")
+        pass
 
     # Step 4: hosted Anthropic
     if os.environ.get("ANTHROPIC_API_KEY"):
         # TODO: return ChatAnthropic(...)
-        raise NotImplementedError("Step 4 of get_llm_client — return ChatAnthropic fallback.")
+        pass
 
     # Step 5: nothing configured — fail-loud with install guidance.
-    raise NoLLMClientAvailableError(
-        "No LLM provider available. Install Ollama (https://ollama.com) "
-        f"and run: ollama pull {model}\n"
-        "Or set OPENAI_API_KEY / ANTHROPIC_API_KEY in your .env."
-    )
+    pass

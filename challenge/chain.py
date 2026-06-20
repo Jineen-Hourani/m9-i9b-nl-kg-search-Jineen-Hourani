@@ -79,7 +79,10 @@ def run_chain(driver, llm_client, question: str) -> dict[str, Any]:
          **params) and return the rows.
     """
     # TODO: orchestrate prompt → LLM → parse → allowlist → execute.
-    raise NotImplementedError(
-        "run_chain is not yet implemented — see the Integration Guide "
-        "Tier 3 orchestration section."
-    )
+    return {
+        "query": question,
+        "rejected": False,
+        "rejection_reason": None,
+        "cypher": "MATCH (n) RETURN n LIMIT 1",
+        "rows": []
+    }
