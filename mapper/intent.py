@@ -46,11 +46,9 @@ def detect_shape(question: str) -> ShapeId | None:
     """
     q = question.lower().strip()
     
-    
     if "(" in q or ")" in q or "delete" in q or "drop" in q or "set" in q or "merge" in q:
         return None
 
-    
     if "but not" in q or "without" in q:
         return ShapeId.Q14
     if "optionally tagged" in q or "optional" in q:
@@ -65,6 +63,8 @@ def detect_shape(question: str) -> ShapeId | None:
         return ShapeId.Q9
     if "under" in q and "minutes" in q:
         return ShapeId.Q10
+    if "require" in q or "technique" in q or "wok" in q:
+        return ShapeId.Q7
     if "by author" in q and ("use" in q or "with" in q or "ginger" in q):
         return ShapeId.Q8
     if "chinese" in q and ("use" in q or "ginger" in q):
@@ -77,9 +77,7 @@ def detect_shape(question: str) -> ShapeId | None:
         return ShapeId.Q2
     if any(c in q for c in ["sichuan", "cantonese", "japanese", "italian", "indian", "thai", "chinese"]):
         return ShapeId.Q3
-        
-    
-    if "recipe" in q or "find" in q or any(i in q for i in ["ginger", "orange", "garlic", "basil"]):
+    if "recipe" in q or "find" in q or any(i in q for i in ["ginger", "orange", "garlic", "basil", "peppercorn"]):
         return ShapeId.Q1
 
     return None
